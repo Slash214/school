@@ -26,9 +26,9 @@ class UserCtl {
     ctx.body = new SuccessModel({ data: result.dataValues });
   }
   async register(ctx) {
-    const { username, nickname, password, level } = ctx.request.body;
+    const { username, nickname, password, level, sex = 1, gread_id } = ctx.request.body;
 
-    if (!username || !nickname || !password || !level) {
+    if (!username || !nickname || !password || !level || !gread_id || !sex) {
       ctx.body = new ErrorModel(ParamsNotNull);
       return;
     }
@@ -39,31 +39,29 @@ class UserCtl {
       nickname,
       password,
       level,
+      sex,
+      gread_id
     });
 
+    console.log(result)
     const str = result.dataValues ? "注册成功" : "注册失败";
     ctx.body = new SuccessModel({ data: result.dataValues, message: str });
   }
   async select(ctx) {
-    // 查询人员 可根据 身份 用户名，昵称 用户id，来查询  pageSize默认一次性查询20， pageIndex 默认第一页
     let {
       pageSize = 20,
       pageIndex = 1,
       level,
-      username,
-      nickname,
-      id,
+      grade_id,
     } = ctx.request.query;
 
     pageIndex = pageIndex ? +pageIndex - 1 : pageIndex;
     const whereOpt = {};
     if (level) whereOpt["level"] = level;
-    if (username) whereOpt["username"] = username;
-    if (username) whereOpt["id"] = id;
-    if (username) whereOpt["nickname"] = nickname;
+    if (grade_id) whereOpt["grade_id"] = grade_id;
 
     const result = await User.findAndCountAll({
-      limmit: +pageSize,
+      limit: +pageSize,
       offset: +pageSize * +pageIndex,
       order: [["id", "desc"]],
       where: whereOpt,

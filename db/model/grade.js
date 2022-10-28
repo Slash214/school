@@ -11,11 +11,6 @@ const Grade = seq.define("grade", {
     allowNull: false,
     comment: "班级名",
   },
-  grade_user: {
-    type: STRING,
-    allowNull: false,
-    comment: "班级用户组",
-  },
 });
 
 module.exports = Grade;

@@ -25,7 +25,7 @@ if (isProd) {
   MYSQL_CONF = {
     host: "127.0.0.1",
     user: "root",
-    password: "xianhan@777",
+    password: "xianhan@123",
     port: "3306",
     database: "youz",
   };

@@ -4,9 +4,8 @@
  */
 const User = require("./user");
 const Course = require("./course");
-const Room = require("./room");
 const Grade = require("./grade");
-const UserGrade = require('./UserGrade');
+const Room = require("./room");
 
 
 // 课程关联教室
@@ -25,22 +24,10 @@ Course.belongsTo(Grade, {
 });
 
 
-// 用户关链班级
-User.hasMany(UserGrade, {
-  foreignKey: 'user_id'
-})
-UserGrade.belongsTo(User, {
-  foreignKey: 'grade_id'
-})
-Grade.belongsTo(UserGrade, {
-  foreignKey: "user_id",
-  targetKey: "grade_id"
-})
 
 module.exports = {
   User,
   Grade,
-  Room,
   Course,
-  UserGrade
+  Room,
 };

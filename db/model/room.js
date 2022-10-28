@@ -26,6 +26,11 @@ const Room = seq.define("room", {
     allowNull: false,
     comment: "教室图片",
   },
+  state: {
+    type: INTEGER,
+    defaultValue: 1,
+    comment: "是否被占用 1 为空  2为占用",
+  },
 });
 
 module.exports = Room;

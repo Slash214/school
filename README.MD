@@ -9,4 +9,4 @@
 -   formidable-upload-koa
 
 
-> 正在开发中...
+> 开发完成 ~  具体功能优化后面再搞 ~
